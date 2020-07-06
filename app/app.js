@@ -3,7 +3,7 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const createError = require('http-errors');
 const express = require('express');
-//const handleError = require('./middleware/handleError');
+const handleError = require('./middleware/handleError');
 const helmet = require('helmet');
 const hpp = require('hpp');
 const mongoSanitize = require('express-mongo-sanitize');
@@ -45,7 +45,7 @@ app.use(limiter);
  //app.use(express.static(path.join(__dirname, 'public')));
  app.use(cookieParser());
  app.use(session({
-  secret: process.env.SESSION_SECRET,
+  secret: SESSION_SECRET,
   resave: true,
   saveUninitialized: true,
   store: new SessionMemory({
@@ -76,6 +76,6 @@ app.use(function (req, res, next) {
   next(createError(404, 'Resource is not found'));
 });
 
-//app.use(handleError);
+app.use(handleError);
 
 module.exports = app;
