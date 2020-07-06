@@ -43,7 +43,7 @@ const handleError = function(err, req, res, next) {
         .json({
           status: 500,
           msg: err.message
-        })   
+        }); 
   }
 
 }
