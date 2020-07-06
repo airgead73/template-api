@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-const { check_auth } = require('../middleware/checkAuth');
-const { check_restype } = require('../middleware/checkResType');
+const check_auth = require('../middleware/checkAuth');
+const check_restype = require('../middleware/checkResType');
 const users_controller = require('../controllers/api.usersController');
 
 router.use(check_restype);

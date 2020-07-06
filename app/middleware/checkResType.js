@@ -1,6 +1,6 @@
 const { ISDEV } = require('../config/config');
 
-exports.checkResType = function(req, res, next) {
+const checkResType = function(req, res, next) {
   
   let resType;
   if((req.headers.accept).includes('json')) {
@@ -18,4 +18,6 @@ exports.checkResType = function(req, res, next) {
   next();
 
 };
+
+module.exports = checkResType;
 

@@ -1,7 +1,7 @@
-const asyncHandler = require('./async');
+const asyncHandler = require('./handleAsync');
 const { ISDEV } = require('../config/config');
 
-exports.checkAuth = asyncHandler(async (req, res, next) => {
+const checkAuth = asyncHandler(async (req, res, next) => {
 
   if(ISDEV) {
     console.log('*****************');
@@ -12,3 +12,5 @@ exports.checkAuth = asyncHandler(async (req, res, next) => {
   next();  
 
 });
+
+module.exports = checkAuth;
