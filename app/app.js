@@ -11,7 +11,7 @@ const path = require('path');
 const rateLimit = require('express-rate-limit');
 const { RATE_LIMIT } = require('./config/config');
 const session = require('express-session');
-const { SESSION_EXP, ISDEV } = require('./config/config');
+const { SESSION_EXP, SESSION_SECRET, ISDEV } = require('./config/config');
 const SessionMemory = require('memorystore')(session);
 const xss = require('xss-clean');
 
@@ -49,7 +49,7 @@ app.use(limiter);
   resave: true,
   saveUninitialized: true,
   store: new SessionMemory({
-    checkPeriod: SESSION_PERIOD
+    checkPeriod: SESSION_EXP
   })
 }));
 
