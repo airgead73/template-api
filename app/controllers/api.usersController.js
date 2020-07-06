@@ -1,4 +1,5 @@
 const asyncHandler = require('../middleware/handleAsync');
+const User = require('../models/User');
 
 /**
  * @route   POST /api/users
@@ -6,12 +7,28 @@ const asyncHandler = require('../middleware/handleAsync');
  * @access  private
  */
 exports.create = asyncHandler(async function(req, res, next) {
+  const { name, email, password } = req.body;
+
+  const user = new User({
+    name,
+    email,
+    password
+  });
+
+  await user.save();
+
+  // Create token
+  const token = user.getSignedJwtToken();
   
   res
     .status(200)
     .json({
       success: true,
-      msg: 'Create user'
+      user: {
+        name: user.name,
+        email: user.email
+      },
+      token
     });
 
 });
