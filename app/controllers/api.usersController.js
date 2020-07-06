@@ -33,22 +33,6 @@ exports.read_many = asyncHandler(async function(req, res, next) {
 });
 
 /**
- * @route   GET /api/users
- * @desc    Read users
- * @access  private
- */
-exports.read_many = asyncHandler(async function(req, res, next) {
-  
-  res
-    .status(200)
-    .json({
-      success: true,
-      msg: 'Read users'
-    });
-
-});
-
-/**
  * @route   GET /api/users/:userID
  * @desc    Read single user
  * @access  private
@@ -59,7 +43,7 @@ exports.read_single = asyncHandler(async function(req, res, next) {
     .status(200)
     .json({
       success: true,
-      msg: 'Read '
+      msg: 'Read single user'
     });
 
 });

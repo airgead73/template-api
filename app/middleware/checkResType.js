@@ -10,9 +10,9 @@ const checkResType = function(req, res, next) {
   }
 
   if(ISDEV) {
-    console.log('\n\n*****************\n');
+    console.log('\n*****************');
     console.log(`res json: ${res.locals.res_json} res html: ${res.locals.res_html}`);
-    console.log('\n*****************\n\n');
+    console.log('*****************\n');
   }
 
   next();
