@@ -6,18 +6,18 @@ const validationRules = (method) => {
   switch(method) {
     case 'createUser':
       return [
-        body('name', 'Name is required').not().isEmpty().trim().escape(),
-        body('email', 'Enter a valid email').isEmail().normalizeEmail().custom(async (value, {req}) => {
+        body('name', 'Name is required.').not().isEmpty().trim().escape(),
+        body('email', 'Enter a valid email.').isEmail().normalizeEmail().custom(async (value, {req}) => {
           let user = await User.findOne({ email: value });
           if(user) {
-            throw new Error('User already exists')
+            throw new Error('User already exists.')
           }
           return true;
         }),
-        body('password', 'Password should more than 5 characters and less than 17 characters').isLength({ min: 6 , max: 16 }),
-        body('confirmPassword').custom((value, {req}) => {
+        body('password', 'Password should more than 5 characters and less than 17 characters.').isLength({ min: 6 , max: 16 }),
+        body('confirm_password').custom((value, {req}) => {
           if(value !== req.body.password) {
-            throw new Error('Password confirmation does not match')
+            throw new Error('Password confirmation does not match.')
           }
           return true;
         }) 
@@ -25,8 +25,8 @@ const validationRules = (method) => {
       break; 
     case 'signinUser':
       return [
-        body('email', 'Enter valid email').isEmail().normalizeEmail(),
-        body('password', 'Enter a valid password').isLength({ min: 6 , max: 16 })
+        body('email', 'Enter valid email.').isEmail().normalizeEmail(),
+        body('password', 'Enter a valid password.').isLength({ min: 6 , max: 16 })
       ]      
   }
 }
