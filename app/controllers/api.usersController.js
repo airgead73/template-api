@@ -39,12 +39,15 @@ exports.create = asyncHandler(async function(req, res, next) {
  * @access  private
  */
 exports.read_many = asyncHandler(async function(req, res, next) {
+
+  const users = await User.find();
   
   res
     .status(200)
     .json({
       success: true,
-      msg: 'Read users'
+      msg: 'Read users',
+      users
     });
 
 });
@@ -55,12 +58,15 @@ exports.read_many = asyncHandler(async function(req, res, next) {
  * @access  private
  */
 exports.read_single = asyncHandler(async function(req, res, next) {
+
+  const user = await User.findById(req.params.userID);
   
   res
     .status(200)
     .json({
       success: true,
-      msg: 'Read single user'
+      msg: 'Read single user',
+      user
     });
 
 });
@@ -88,11 +94,37 @@ exports.read_current = asyncHandler(async function(req, res, next) {
  */
 exports.update = asyncHandler(async function(req, res, next) {
 
+  const { name, email } = req.body;
+
+  // Build fields
+  const contactFields = {};
+  if(name) contactFields.name = name;
+  if(email) contactFields.name = email;
+
+  // Find user
+  let user = await User.findById(req.params.userID);
+
+  if(!user) {
+    return res
+      .status(404)
+      .json({
+        success: false,
+        errors: [
+          {
+            msg: '2: User not found'
+          }
+        ]
+    });   
+  }
+
+  // Update user
+  user = await User.findByIdAndUpdate(req.params.userID, { $set: contactFields }, { new: true });
+
   res
     .status(200)
     .json({
       success: true,
-      msg: 'Update user'
+      msg: `${user.name} updated.`
   }); 
 
 });
@@ -104,11 +136,28 @@ exports.update = asyncHandler(async function(req, res, next) {
  */
 exports.delete = asyncHandler(async function(req, res, next) {
 
+  let user = await User.findById(req.params.userID);
+
+  // If user not found
+  if(!user) {
+    return res.status(404).json({
+      success: false,
+      errors: [
+        {
+          msg: '3: User not found'
+        }
+      ]
+    });   
+  }
+
+  // Delete user
+  user = await User.findByIdAndRemove(req.params.userID);
+
   res
     .status(200)
     .json({
       success: true,
-      msg: 'Delete user'
+      msg: `${user.name} is deleted.`
   }); 
 
 });
