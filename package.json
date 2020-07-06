@@ -4,8 +4,8 @@
   "description": "Template for api projects.",
   "main": "server.js",
   "scripts": {
-    "test": "test",
-    "start": "node server.js"
+    "start": "NODE_ENV=production node server.js",
+    "dev": "NODE_ENV=development nodemon -r dotenv/config server.js"
   },
   "repository": {
     "type": "git",
@@ -35,5 +35,10 @@
     "memorystore": "^1.6.2",
     "mongoose": "^5.9.21",
     "xss-clean": "^0.1.1"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.4"
   }
 }

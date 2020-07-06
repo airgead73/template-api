@@ -1,4 +1,4 @@
-//const connectDB = require('./config/db');
+const connectDB = require('./config/db');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const createError = require('http-errors');
@@ -9,9 +9,9 @@ const hpp = require('hpp');
 const mongoSanitize = require('express-mongo-sanitize');
 const path = require('path');
 const rateLimit = require('express-rate-limit');
-//const { RATE_LIMIT } = require('./config/config');
+const { RATE_LIMIT } = require('./config/config');
 const session = require('express-session');
-//const { SESSION_PERIOD, ISDEV } = require('./config/config');
+const { SESSION_EXP, ISDEV } = require('./config/config');
 const SessionMemory = require('memorystore')(session);
 const xss = require('xss-clean');
 
@@ -20,7 +20,7 @@ const xss = require('xss-clean');
  */
 
 const app = express();
-//connectDB();
+connectDB();
 
 /** 
  * @desc  SECURITY
@@ -30,11 +30,11 @@ app.use(xss());
 app.use(hpp());
 app.use(cors());
 app.use(mongoSanitize());
-// const limiter = rateLimit({
-//   windowMs: 10 * 60 * 1000, // 10 mins
-//   max: RATE_LIMIT
-// });
-// app.use(limiter);
+const limiter = rateLimit({
+  windowMs: 10 * 60 * 1000, // 10 mins
+  max: RATE_LIMIT
+});
+app.use(limiter);
 
 /** 
  * @desc EXPRESS MIDDLEWARE
@@ -44,23 +44,23 @@ app.use(mongoSanitize());
  app.use(express.urlencoded({ extended: false }));
  //app.use(express.static(path.join(__dirname, 'public')));
  app.use(cookieParser());
-//  app.use(session({
-//   secret: process.env.SESSION_SECRET,
-//   resave: true,
-//   saveUninitialized: true,
-//   store: new SessionMemory({
-//     checkPeriod: SESSION_PERIOD
-//   })
-//}));
+ app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: true,
+  saveUninitialized: true,
+  store: new SessionMemory({
+    checkPeriod: SESSION_PERIOD
+  })
+}));
 
 /** 
  * @desc GLOBAL VARIABLES
  */
 
-// if (ISDEV) {
-//   const logger = require('morgan');
-//   app.use(logger('dev'))
-// }
+if (ISDEV) {
+  const logger = require('morgan');
+  app.use(logger('dev'))
+}
 
 /**
  * @desc LOAD ROUTES
