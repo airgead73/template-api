@@ -1,4 +1,4 @@
-const asyncHandler = require('../middleware/async');
+const asyncHandler = require('../middleware/handleAsync');
 
 /**
  * @route   GET /

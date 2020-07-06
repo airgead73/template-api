@@ -28,3 +28,5 @@ router
     checkAuth,
     index_controller.about
   );
+
+module.exports = router;
