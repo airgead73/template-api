@@ -4,9 +4,9 @@ const { ISDEV } = require('../config/config');
 const checkAuth = asyncHandler(async (req, res, next) => {
 
   if(ISDEV) {
-    console.log('*****************');
+    console.log('\n\n*****************\n');
     console.log('Auth checked.');
-    console.log('*****************');
+    console.log('\n*****************\n\n');
   }
 
   next();  
