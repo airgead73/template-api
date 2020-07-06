@@ -65,7 +65,7 @@ if (ISDEV) {
 /**
  * @desc LOAD ROUTES
  */
-//app.use('/api/users', require('./routes/api.users'));
+app.use('/api/users', require('./routes/api.usersRoutes'));
 //app.use('/api/auth', require('./routes/api.auth'));
 
 /**
