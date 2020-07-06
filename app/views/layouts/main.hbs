@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+{{> _head}}
+
+<body>
+  {{#if user}}
+    {{> _header}}
+  {{/if}}
+  <main class="container">
+  {{{body}}}
+  </main>  
+</body>
+
+{{> _footer}}
+{{> _scripts}}
+
+</html>
