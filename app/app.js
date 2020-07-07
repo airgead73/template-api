@@ -105,6 +105,7 @@ app.use('/api/users', require('./routes/api.usersRoutes'));
 //app.use('/api/auth', require('./routes/api.auth'));
 
 app.use('/', require('./routes/client.indexRoutes'));
+app.use('/users', require('./routes/client.usersRoutes'));
 
 /**
  * @desc ERROR HANDLING
