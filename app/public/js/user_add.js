@@ -21,7 +21,7 @@
         checkName(target);
         break;
       case 'email':
-        console.log('input email');
+        checkEmail(target);
         break;
       case 'password':
         console.log('input password');
@@ -43,14 +43,42 @@
     return false;
   }
 
+  function isEmpty(entry) {
+    if(entry === '' || entry === null) {
+      return true;
+    }
+    return false;
+
+  }
+
+  function isEmail(entry) {
+    console.log(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(entry));
+
+  }
+
   function checkName(target) {
     const value = target.value;
 
-    if(invalidEntry(value)) {
+    if(invalidEntry(value) || isEmpty(value)) {
       console.log('Invalid entry');
     }
 
   }
+
+  function checkEmail(target) {
+    const value = target.value;
+
+    // if(invalidEntry(value) || isEmpty(value)) {
+    //   console.log('Invalid entry');
+    // }
+
+    // if(isEmail(value)) {
+    //   console.log('Not a valid email.');
+    // }
+
+    isEmail(value);
+
+  }  
   
   
 })();
