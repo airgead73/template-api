@@ -14,6 +14,7 @@ exports.view_many = asyncHandler(async function(req, res, next) {
       success: true,
       msg: 'View users page',
       title: 'users',
+      form_user_add: true,
       users
   });
  
