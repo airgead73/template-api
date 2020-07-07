@@ -18,7 +18,7 @@
 
     switch(name) {
       case 'name':
-        console.log('input name');
+        checkName(target);
         break;
       case 'email':
         console.log('input email');
@@ -32,6 +32,22 @@
       default:
         console.log('default');
         break;
+    }
+
+  }
+
+  function invalidEntry(entry) {
+    if (entry.includes('<')) {
+      return true;
+    }
+    return false;
+  }
+
+  function checkName(target) {
+    const value = target.value;
+
+    if(invalidEntry(value)) {
+      console.log('Invalid entry');
     }
 
   }
