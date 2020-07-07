@@ -67,16 +67,20 @@
 
   function checkEmail(target) {
     const value = target.value;
+    const isEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value) ? console.log('is an email') : console.log('is NOT email');
 
-    // if(invalidEntry(value) || isEmpty(value)) {
-    //   console.log('Invalid entry');
-    // }
+    if(invalidEntry(value) || isEmpty(value)) {
+      console.log('Invalid entry');
+    }
 
-    // if(isEmail(value)) {
+    // if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value)) {
     //   console.log('Not a valid email.');
     // }
 
-    isEmail(value);
+
+
+    isEmail;
+
 
   }  
   
