@@ -101,9 +101,11 @@ if (ISDEV) {
 /**
  * @desc LOAD ROUTES
  */
-app.use('/api/users', require('./routes/api.usersRoutes'));
-//app.use('/api/auth', require('./routes/api.auth'));
 
+ // api
+app.use('/api/users', require('./routes/api.usersRoutes'));
+
+// client
 app.use('/', require('./routes/client.indexRoutes'));
 app.use('/users', require('./routes/client.usersRoutes'));
 
