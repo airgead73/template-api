@@ -19,6 +19,6 @@ router
 
 router
   .route('/signout')
-  .post(auth_controller.signout);
+  .get(auth_controller.signout);
 
 module.exports = router;

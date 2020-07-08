@@ -1,5 +1,6 @@
 const asyncHandler = require('../middleware/handleAsync');
 const User = require('../models/User');
+const { ISDEV } = require('../config/config');
 
 /**
  * @route   POST api/auth
@@ -8,6 +9,7 @@ const User = require('../models/User');
  */
 
  exports.signin = asyncHandler(async function(req, res, next) {
+
    const { email, password } = req.body;
 
    if(
@@ -19,6 +21,10 @@ const User = require('../models/User');
     return res
      .status(400)
      .redirect('/signin');
+   }
+
+   if(res.locals.res_html) {
+    return sendTokenResponse(res.locals.checked_user, 200, res);
    }
 
    res
@@ -36,11 +42,32 @@ const User = require('../models/User');
 
  exports.signout = asyncHandler(async function(req, res, next) {
 
+  const options = {
+    expires: new Date(Date.now() + 10),
+    httpOnly: true,
+    secure: ISDEV ? false : true    
+  }
+
   res
-  .status(200)
-  .json({
-    success: true,
-    msg: 'Signout user.'
-  }); 
+    .cookie('token', 'none', options)
+    .status(200)
+    .redirect('/signin'); 
 
  });
+
+ const sendTokenResponse = (user, statusCode, res) => {
+
+  // Create token
+  const token = user.getSignedJwtToken();
+  const options = {
+    expires: new Date(Date.now()+ process.env.JWT_COOKIE_EXP *24 * 60 * 60 * 1000),
+    httpOnly: true,
+    secure: ISDEV ? false : true
+  }
+
+  return res
+    .status(statusCode)
+    .cookie('token', options)
+    .redirect('/signin');
+
+ }
