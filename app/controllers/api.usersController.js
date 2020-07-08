@@ -19,6 +19,12 @@ exports.create = asyncHandler(async function(req, res, next) {
 
   // Create token
   const token = user.getSignedJwtToken();
+
+  if(res.locals.res_html) {
+    return res
+      .status(200)
+      .redirect('/users');
+  }
   
   res
     .status(200)
@@ -40,7 +46,7 @@ exports.create = asyncHandler(async function(req, res, next) {
  */
 exports.read_many = asyncHandler(async function(req, res, next) {
 
-  const users = await User.find();
+  const users = await User.find().sort({ createdAt: -1});
   
   res
     .status(200)

@@ -7,7 +7,8 @@ const User = require('../models/User');
  * @access  private
  */
 exports.view_many = asyncHandler(async function(req, res, next) {
-  const users = await User.find()
+  const users = await User.find().sort({ createdAt: -1 });
+  
   res
     .status(200)
     .render('pages/users/index',{
