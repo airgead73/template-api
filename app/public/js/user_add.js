@@ -1,6 +1,7 @@
 (function userAdd() {
   
   const form = document.getElementById('form_user_add');
+  const submitBtn = form.querySelector('button');
   let inputs = document.querySelectorAll('input');
   inputs = Array.from(inputs);
 
@@ -12,11 +13,26 @@
     });
   });
 
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    checkInputs();
+
+    const invalidInputs = form.querySelectorAll('.is-invalid');
+
+    if(invalidInputs.length) {
+      submitBtn.disabled = true;
+      return;
+    };
+
+    form.submit();
+
+  });
+
   function initInput(target) {
 
-    const name = target.getAttribute('name');
+    const inputName = target.getAttribute('name');
 
-    switch(name) {
+    switch(inputName) {
       case 'name':
         checkName(target);
         break;
@@ -24,10 +40,10 @@
         checkEmail(target);
         break;
       case 'password':
-        console.log('input password');
+        checkPassword(target);
         break;
       case 'confirm_password':
-        console.log('input confirm password');
+        checkPasswordConfirmation(target);
         break;
       default:
         console.log('default');
@@ -36,14 +52,24 @@
 
   }
 
+  function checkInputs() {
+    checkName(form.querySelector('input[name="name"]'));
+    checkEmail(form.querySelector('input[name="email"]'));
+    checkPassword(form.querySelector('input[name="password"]'));
+    checkPasswordConfirmation(form.querySelector('input[name="confirm_password"]'));
+  }
+
   function invalidEntry(entry) {
+
     if (entry.includes('<')) {
       return true;
     }
     return false;
+
   }
 
   function isEmpty(entry) {
+
     if(entry === '' || entry === null) {
       return true;
     }
@@ -51,38 +77,70 @@
 
   }
 
-  function isEmail(entry) {
-    console.log(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(entry));
+  function flagInvalid(target) {
+
+    target.classList.remove('is-valid');
+    target.classList.add('is-invalid');
+    submitBtn.disabled = true;
 
   }
+
+  function flagValid(target) {
+
+    target.classList.remove('is-invalid');
+    target.classList.add('is-valid');
+    submitBtn.disabled = false;
+
+  }    
 
   function checkName(target) {
     const value = target.value;
 
     if(invalidEntry(value) || isEmpty(value)) {
-      console.log('Invalid entry');
+      flagInvalid(target);
+      return;
     }
+
+    flagValid(target);
 
   }
 
   function checkEmail(target) {
     const value = target.value;
-    const isEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value) ? console.log('is an email') : console.log('is NOT email');
+    const isEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value) ? flagValid(target) : flagInvalid(target);
 
     if(invalidEntry(value) || isEmpty(value)) {
-      console.log('Invalid entry');
+      flagInvalid(target);
+      return;
     }
-
-    // if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value)) {
-    //   console.log('Not a valid email.');
-    // }
-
-
 
     isEmail;
 
-
   }  
   
+  function checkPassword(target) {
+    const value = target.value;
+
+    if(invalidEntry(value) || value.length < 6 || value.length > 16) {
+      flagInvalid(target);
+      return;
+    }
+
+    flagValid(target);
+
+  }
+
+  function checkPasswordConfirmation(target) {
+    const pwd = document.querySelector('input[name="password"]');
+    const value = target.value;
+    
+    if(pwd.value !== value) {
+      flagInvalid(target);
+      return;
+    }
+
+    flagValid(target);
+
+  }
   
 })();
