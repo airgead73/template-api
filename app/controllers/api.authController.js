@@ -33,14 +33,3 @@ const User = require('../models/User');
   }); 
 
  });
-
- exports.read_current = asyncHandler(async function(req, res, next) {
-
-  res
-  .status(200)
-  .json({
-    success: true,
-    msg: 'Read current user.'
-  });
-
- });

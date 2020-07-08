@@ -13,8 +13,4 @@ router
   .route('/signout')
   .post(auth_controller.signout);
 
-router
-  .route('/current')  
-  .post(auth_controller.read_current);
-
 module.exports = router;
