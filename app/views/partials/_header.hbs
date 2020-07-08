@@ -26,9 +26,12 @@
           <a class="nav-link" href="/users">users</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link" data-toggle="dropdown" href="#">profile</a>
+          <a class="nav-link" data-toggle="dropdown" href="#">
+            <i class="fas fa-user"></i> 
+            <span class="user-name">{{user.name}}</span>
+          </a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="api/users/current">my profile</a>
+            <a class="dropdown-item" href="api/users/current">profile</a>
             <a class="dropdown-item" href="api/auth/signout">signout</a>
           </div>
       </li>      
