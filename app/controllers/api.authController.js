@@ -10,7 +10,11 @@ const User = require('../models/User');
  exports.signin = asyncHandler(async function(req, res, next) {
    const { email, password } = req.body;
 
-   if(res.locals.validation_fail && res.locals.res_html) {
+   if(
+     res.locals.validation_fail ||
+     res.locals.authorization_fail &&
+     res.locals.res_html
+     ) {
     req.flash('error_msg', (res.locals.error_arr).join(' '));
     return res
      .status(400)

@@ -5,3 +5,35 @@ main.container {
 #form_signin {
   margin-top: 15%;
 }
+
+.form-group {
+  position: relative;
+}
+
+.form-group input {
+  padding-right: 16px;
+}
+
+.valid-flag {
+  position: absolute;
+  display: none;
+  color: #28a745;
+  right: 10px;
+  bottom: 5px;
+}
+
+.form-control.is-valid~.valid-flag {
+  display: inline-block;
+}
+
+.invalid-flag {
+  position: absolute;
+  display: none;
+  color: #dc3545;
+  right: 10px;
+  bottom: 30px;
+}
+
+.form-control.is-invalid~.invalid-flag {
+  display: inline-block;
+}
