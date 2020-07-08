@@ -25,7 +25,8 @@ exports.signin = asyncHandler(async function(req, res, next) {
     .status(200)
     .render('pages/signin', {
       success: true,
-      title: 'signin'
+      title: 'signin',
+      form_user_signin: true
     });
 
 });
