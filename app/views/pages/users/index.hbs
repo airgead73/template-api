@@ -20,20 +20,24 @@
         <input 
           type="name" 
           name="name" 
-          class="form-control"
+          class="form-control is-valid"
           autocomplete="off"
           required
         >
+        <div class="valid-feedback">Looks good!</div>
+        <div class="invalid-feedback">Add valid name.</div>
       </div>      
       <div class="form-group">
         <label for="email">Email address:</label>
         <input 
           type="email" 
           name="email" 
-          class="form-control"
+          class="form-control is-invalid"
           autocomplete="off"
           required
         >
+        <div class="valid-feedback">Looks good!</div>
+        <div class="invalid-feedback">Add valid email.</div>        
       </div>
       <div class="form-group">
         <label for="password">Password:</label>
@@ -44,6 +48,8 @@
           autocomplete="off"
           required
         >
+        <div class="valid-feedback">Looks good!</div>
+        <div class="invalid-feedback">Add valid password.</div>        
       </div>
       <div class="form-group">
         <label for="confirm_password">Confirm Password:</label>
@@ -51,9 +57,11 @@
           type="password" 
           name="confirm_password" 
           class="form-control"
-          autocomplete="off"
+          autocomplete="off"   
           required
-        >
+        >       
+        <div class="valid-feedback">Looks good!</div>
+        <div class="invalid-feedback">Does not match password.</div>        
       </div>      
     </div>
     <div class="card-footer">
