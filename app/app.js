@@ -104,6 +104,7 @@ if (ISDEV) {
 
  // api
 app.use('/api/users', require('./routes/api.usersRoutes'));
+app.use('/api/auth', require('./routes/api.authRoutes'));
 
 // client
 app.use('/', require('./routes/client.indexRoutes'));
