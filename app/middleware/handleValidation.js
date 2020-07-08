@@ -37,12 +37,11 @@ const validate = (req, res, next) => {
     return next();
   }
   const extractedErrors = [];
-  errors.array().map(err => extractedErrors.push({ [err.param]: err.msg }));
-    res.status(422).json({
-      succces: false,
-      msg: 'Data not accepted',
-      errors: extractedErrors
-    });
+  //errors.array().map(err => extractedErrors.push({ [err.param]: err.msg }));
+  errors.array().map(err => extractedErrors.push(err.msg));
+  res.locals.error_arr = extractedErrors;
+  res.locals.validation_fail = true;
+  return next();
 }
 
 module.exports = {
