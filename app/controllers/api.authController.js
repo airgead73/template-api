@@ -67,7 +67,7 @@ const { ISDEV } = require('../config/config');
 
   return res
     .status(statusCode)
-    .cookie('token', options)
-    .redirect('/signin');
+    .cookie('token', token, options)
+    .redirect('/');
 
  }

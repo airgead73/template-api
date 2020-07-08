@@ -3,8 +3,10 @@
 {{> _head}}
 
 <body>
-  
-  {{> _header}}
+
+  {{#if user}}
+    {{> _header}}
+  {{/if}}   
   <main class="container">
   {{{body}}}
   </main>  

@@ -159,6 +159,12 @@ exports.delete = asyncHandler(async function(req, res, next) {
   // Delete user
   user = await User.findByIdAndRemove(req.params.userID);
 
+  if(res.locals.res_html) {
+    return res
+      .status(200)
+      .redirect('/users');
+  }
+
   res
     .status(200)
     .json({
