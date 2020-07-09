@@ -15,6 +15,14 @@ router
   );
 
 router
+  .route('/current')
+  .get(
+    checkResType,
+    checkAuth,
+    user_controller.view_many
+  );
+
+router
   .route('/:userID')
   .get(
     checkResType,
