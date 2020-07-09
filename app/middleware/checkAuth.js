@@ -31,6 +31,7 @@ const checkAuth = asyncHandler(async (req, res, next) => {
 
     req.user = await User.findById(decoded.id);
     res.locals.user = req.user;
+    res.locals.username = (req.user).name;
 
     console.log('auth executed');
 

@@ -64,6 +64,7 @@ exports.view_update = asyncHandler(async function(req, res, next) {
     success: true,
     msg: 'View user detail',
     title: `${user.name}`,
+    form_user_update: true,
     user
   });
  

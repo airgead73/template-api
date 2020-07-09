@@ -7225,11 +7225,11 @@ main {
 .form-control.is-invalid ~ .invalid-flag {
   display: inline-block; }
 
-/* .nav-item.dropdown {
-  border-left: 1px solid rgba(255, 255, 255, .5);
+.nav-item.dropdown {
+  border: 1px solid rgba(255, 255, 255, 0.5);
   margin-left: 10px;
-  padding-left: 5px;
-} */
+  padding-left: 5px; }
+
 a[data-toggle="dropdown"] {
   text-transform: lowercase; }
 
