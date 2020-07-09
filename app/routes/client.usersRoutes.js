@@ -19,7 +19,7 @@ router
   .get(
     checkResType,
     checkAuth,
-    user_controller.view_many
+    user_controller.view_current
   );
 
 router
@@ -29,5 +29,13 @@ router
     checkAuth,
     user_controller.view_one
   );
+
+  router
+  .route('/:userID/update')
+  .get(
+    checkResType,
+    checkAuth,
+    user_controller.view_update
+  );  
 
 module.exports = router;

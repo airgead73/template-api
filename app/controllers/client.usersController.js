@@ -27,7 +27,7 @@ exports.view_many = asyncHandler(async function(req, res, next) {
  * @access  private
  */
 exports.view_current = asyncHandler(async function(req, res, next) {
-  const user = await User.findById(user.id);
+  const user = await User.findById((res.locals.user).id);
   res.status(200).render('pages/users/detail',{
     success: true,
     msg: 'View user detail',

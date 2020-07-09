@@ -105,7 +105,9 @@ exports.update = asyncHandler(async function(req, res, next) {
   // Build fields
   const contactFields = {};
   if(name) contactFields.name = name;
-  if(email) contactFields.name = email;
+  if(email) contactFields.email = email;
+
+  console.log(contactFields);
 
   // Find user
   let user = await User.findById(req.params.userID);
@@ -125,6 +127,12 @@ exports.update = asyncHandler(async function(req, res, next) {
 
   // Update user
   user = await User.findByIdAndUpdate(req.params.userID, { $set: contactFields }, { new: true });
+
+  if(res.locals.res_html) {
+    return res
+      .status(200)
+      .redirect(`/users/${req.params.userID}`);
+  }
 
   res
     .status(200)
