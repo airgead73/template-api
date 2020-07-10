@@ -45,6 +45,7 @@ const handleError = async function(err, req, res, next) {
           .status(404)
           .render('pages/error', {
             status: 404,
+            title: 'error',
             msg: 'Page not found'
           })
       }
@@ -61,6 +62,7 @@ const handleError = async function(err, req, res, next) {
           .status(500)
           .render('pages/error', {
             status: 404,
+            title: 'error',
             msg: 'Internal Server Error (reference)'
           })
       }      
@@ -77,6 +79,7 @@ const handleError = async function(err, req, res, next) {
           .status(404)
           .render('pages/error', {
             status: 404,
+            title: 'error',
             msg: 'Resource not found'
           })
       }    
@@ -93,6 +96,7 @@ const handleError = async function(err, req, res, next) {
           .status(500)
           .render('pages/error', {
             status: 500,
+            title: 'error',
             msg: err.message
           })
       }      
