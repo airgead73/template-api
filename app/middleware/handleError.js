@@ -1,6 +1,8 @@
-const { ISDEV } = require('../config/config');
+const { ISDEV, JWT_SECRET } = require('../config/config');
+const jwt = require('jsonwebtoken');
+const User = require('../models/User');
 
-const handleError = function(err, req, res, next) {
+const handleError = async function(err, req, res, next) {
 
   if(ISDEV) {
     console.log('****************************');
@@ -12,8 +14,40 @@ const handleError = function(err, req, res, next) {
     console.log('****************************');
   }
 
+  let token;
+
+  token = req.cookies.token;
+
+  if(!token) {
+    return res
+      .status(401)
+      .redirect('/signin');
+  }
+
+  try {
+
+    // Verify token
+    const decoded = await jwt.verify(token, JWT_SECRET);
+  
+    req.user = await User.findById(decoded.id);
+    res.locals.user = req.user;
+    res.locals.username = (req.user).name;
+    res.locals.userid = (req.user).id;
+
+  } catch(err) {
+    console.error(err);
+  }  
+
   switch(err.name) {
     case 'NotFoundError':
+      if(!(req.headers.accept).includes('json')) {
+        return res
+          .status(404)
+          .render('pages/error', {
+            status: 404,
+            msg: 'Page not found'
+          })
+      }
       return res
         .status(404)
         .json({
@@ -22,6 +56,14 @@ const handleError = function(err, req, res, next) {
         });
       break;
     case 'ReferenceError':
+      if(res.locals.res_html) {
+        return res
+          .status(500)
+          .render('pages/error', {
+            status: 404,
+            msg: 'Internal Server Error (reference)'
+          })
+      }      
       return res
         .status(500)
         .json({
@@ -30,6 +72,14 @@ const handleError = function(err, req, res, next) {
         });
       break; 
     case 'CastError': 
+      if(res.locals.res_html) {
+        return res
+          .status(404)
+          .render('pages/error', {
+            status: 404,
+            msg: 'Resource not found'
+          })
+      }    
       return res
         .status(404) 
         .json({
@@ -38,6 +88,14 @@ const handleError = function(err, req, res, next) {
         });
         break;
     default:
+      if(res.locals.res_html) {
+        return res
+          .status(500)
+          .render('pages/error', {
+            status: 500,
+            msg: err.message
+          })
+      }      
       return res
         .status(500) 
         .json({

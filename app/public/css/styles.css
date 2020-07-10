@@ -7180,50 +7180,11 @@ a.text-dark:hover, a.text-dark:focus {
 main {
   padding-top: 2%; }
 
-#form_user_signin,
-#user_update {
-  margin-top: 30%;
-  width: 280px; }
-  @media (min-width: 567px) {
-    #form_user_signin,
-    #user_update {
-      margin-top: 15%;
-      width: 350px; } }
-
 .navbar-text {
   visibility: hidden; }
   @media (min-width: 567px) {
     .navbar-text {
       visibility: visible; } }
-
-main {
-  padding-top: 2%; }
-
-.form-group {
-  position: relative; }
-
-.form-group input {
-  padding-right: 16px; }
-
-.valid-flag {
-  position: absolute;
-  display: none;
-  color: #28a745;
-  right: 10px;
-  bottom: 5px; }
-
-.form-control.is-valid ~ .valid-flag {
-  display: inline-block; }
-
-.invalid-flag {
-  position: absolute;
-  display: none;
-  color: #dc3545;
-  right: 10px;
-  bottom: 30px; }
-
-.form-control.is-invalid ~ .invalid-flag {
-  display: inline-block; }
 
 .nav-link[data-toggle="dropdown"] {
   border: 1px solid rgba(255, 255, 255, 0.5);
@@ -7236,3 +7197,16 @@ a[data-toggle="dropdown"] {
 
 .user-name {
   margin-left: 5px; }
+
+main {
+  padding-top: 2%; }
+
+#form_user_signin,
+#user_update {
+  margin-top: 30%;
+  width: 280px; }
+  @media (min-width: 567px) {
+    #form_user_signin,
+    #user_update {
+      margin-top: 15%;
+      width: 350px; } }
