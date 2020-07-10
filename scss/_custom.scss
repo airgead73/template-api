@@ -1,72 +1,18 @@
-@mixin media($queryString){
-  @media #{$queryString} {
-    @content;
-  }
-}
 
-#form_user_signin,
-#user_update {
-  margin-top: 30%;
-  width: 280px;
-  @include media("(min-width: 567px)") {
-    margin-top: 15%;
-    width: 350px;
-  }
-}
 
-.navbar-text {
-  visibility: hidden;
-  @include media("(min-width: 567px)") {
-    visibility: visible;
-  }
-}
 
-main {
-  padding-top: 2%;
-}
-.form-group {
-  position: relative;
-}
 
-.form-group input {
-  padding-right: 16px;
-}
 
-.valid-flag {
-  position: absolute;
-  display: none;
-  color: #28a745;
-  right: 10px;
-  bottom: 5px;
-}
 
-.form-control.is-valid~.valid-flag {
-  display: inline-block;
-}
 
-.invalid-flag {
-  position: absolute;
-  display: none;
-  color: #dc3545;
-  right: 10px;
-  bottom: 30px;
-}
 
-.form-control.is-invalid~.invalid-flag {
-  display: inline-block;
-}
 
-.nav-link[data-toggle="dropdown"] {
-  border: 1px solid rgba(255, 255, 255, .5);
-  border-radius: 4px;
-  margin-left: 10px;
-  text-align: center;
-} 
 
-a[data-toggle="dropdown"] {
-  text-transform: lowercase;
-}
-
-.user-name {
-  margin-left: 5px;
-}
+@import './custom/variables';
+@import './custom/mixins';
+@import './custom/base';
+@import './custom/header';
+@import './custom/nav';
+@import './custom/main';
+@import './custom/footer';
+@import './custom/forms';
