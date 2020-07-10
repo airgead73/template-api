@@ -7180,6 +7180,27 @@ a.text-dark:hover, a.text-dark:focus {
 main {
   padding-top: 2%; }
 
+.navbar-text {
+  visibility: hidden; }
+  @media (min-width: 567px) {
+    .navbar-text {
+      visibility: visible; } }
+
+.nav-link[data-toggle="dropdown"] {
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 4px;
+  margin-left: 10px;
+  text-align: center; }
+
+a[data-toggle="dropdown"] {
+  text-transform: lowercase; }
+
+.user-name {
+  margin-left: 5px; }
+
+main {
+  padding-top: 2%; }
+
 #form_user_signin,
 #user_update {
   margin-top: 30%;
@@ -7189,49 +7210,3 @@ main {
     #user_update {
       margin-top: 15%;
       width: 350px; } }
-
-.navbar-text {
-  visibility: hidden; }
-  @media (min-width: 567px) {
-    .navbar-text {
-      visibility: visible; } }
-
-main {
-  padding-top: 2%; }
-
-.form-group {
-  position: relative; }
-
-.form-group input {
-  padding-right: 16px; }
-
-.valid-flag {
-  position: absolute;
-  display: none;
-  color: #28a745;
-  right: 10px;
-  bottom: 5px; }
-
-.form-control.is-valid ~ .valid-flag {
-  display: inline-block; }
-
-.invalid-flag {
-  position: absolute;
-  display: none;
-  color: #dc3545;
-  right: 10px;
-  bottom: 30px; }
-
-.form-control.is-invalid ~ .invalid-flag {
-  display: inline-block; }
-
-.nav-item.dropdown {
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  margin-left: 10px;
-  padding-left: 5px; }
-
-a[data-toggle="dropdown"] {
-  text-transform: lowercase; }
-
-.user-name {
-  margin-left: 5px; }
