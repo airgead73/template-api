@@ -23,6 +23,14 @@ router
   );
 
 router
+  .route('/current/update')
+  .get(
+    checkResType,
+    checkAuth,
+    user_controller.view_current_update
+  );
+
+router
   .route('/:userID')
   .get(
     checkResType,

@@ -94,6 +94,17 @@ exports.read_current = asyncHandler(async function(req, res, next) {
 });
 
 /**
+ * @route   PUT /api/users/current
+ * @desc    Update current user
+ * @access  private
+ */
+exports.update_current = asyncHandler(async function(req, res, next) {
+  
+
+
+});
+
+/**
  * @route   PUT /api/users/:userID
  * @desc    Update user
  * @access  private

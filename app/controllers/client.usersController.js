@@ -23,14 +23,30 @@ exports.view_many = asyncHandler(async function(req, res, next) {
 
 /**
  * @route   GET /users/current
- * @desc    View user detail
+ * @desc    View current detail
  * @access  private
  */
 exports.view_current = asyncHandler(async function(req, res, next) {
   const user = await User.findById((res.locals.user).id);
-  res.status(200).render('pages/users/detail',{
+  res.status(200).render('pages/current/index',{
     success: true,
-    msg: 'View user detail',
+    msg: 'View current detail',
+    title: `${user.name}`,
+    user
+  });
+ 
+});
+
+/**
+ * @route   GET /users/current/update
+ * @desc    View current update
+ * @access  private
+ */
+exports.view_current_update = asyncHandler(async function(req, res, next) {
+  const user = await User.findById((res.locals.user).id);
+  res.status(200).render('pages/current/update',{
+    success: true,
+    msg: 'View user update',
     title: `${user.name}`,
     user
   });
