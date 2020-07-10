@@ -96,7 +96,7 @@ app.use(function (req, res, next) {
 
 if (ISDEV) {
   const logger = require('morgan');
-  app.use(logger('dev'))
+  app.use(logger('dev'));
 }
 
 /**
