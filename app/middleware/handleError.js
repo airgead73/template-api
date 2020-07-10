@@ -56,7 +56,7 @@ const handleError = async function(err, req, res, next) {
         });
       break;
     case 'ReferenceError':
-      if(res.locals.res_html) {
+      if(!(req.headers.accept).includes('json')) {
         return res
           .status(500)
           .render('pages/error', {
@@ -72,7 +72,7 @@ const handleError = async function(err, req, res, next) {
         });
       break; 
     case 'CastError': 
-      if(res.locals.res_html) {
+      if(!(req.headers.accept).includes('json')) {
         return res
           .status(404)
           .render('pages/error', {
@@ -88,7 +88,7 @@ const handleError = async function(err, req, res, next) {
         });
         break;
     default:
-      if(res.locals.res_html) {
+      if(!(req.headers.accept).includes('json')) {
         return res
           .status(500)
           .render('pages/error', {
