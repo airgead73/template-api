@@ -8,5 +8,5 @@ module.exports = {
   SESSION_SECRET: process.env.SESSION_SECRET,
   RATE_LIMIT: 100,
   SALT_ROUNDS: process.env.SALT_ROUNDS,
-  ISDEV: isDev = process.env.NODE_ENV === 'development'
+  ISDEV: process.env.NODE_ENV === 'development'
 };
