@@ -20,8 +20,8 @@ router
 
 router
   .route('/current')
-  .get(users_controller.read_current)
-  .put(users_controller.update_current)
+  .get(users_controller.read_current);
+
 
 router
   .route('/:userID')

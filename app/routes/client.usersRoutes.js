@@ -15,22 +15,6 @@ router
   );
 
 router
-  .route('/current')
-  .get(
-    checkResType,
-    checkAuth,
-    user_controller.view_current
-  );
-
-router
-  .route('/current/update')
-  .get(
-    checkResType,
-    checkAuth,
-    user_controller.view_current_update
-  );
-
-router
   .route('/:userID')
   .get(
     checkResType,

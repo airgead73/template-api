@@ -24,16 +24,12 @@ const checkAuth = asyncHandler(async (req, res, next) => {
   try {
 
     // Verify token
-    console.log('decoded');
     const decoded = await jwt.verify(token, JWT_SECRET);
-    console.log(decoded);
-    
-
+  
     req.user = await User.findById(decoded.id);
     res.locals.user = req.user;
     res.locals.username = (req.user).name;
-
-    console.log('auth executed');
+    res.locals.userid = (req.user).id;
 
     next();
 
